@@ -2,28 +2,36 @@ def main():
     print("ET0735 (DevOps for AIoT) - Lab 2 - Introduction to Python")
     display_main_menu()
     num_list = get_user_input()
+    print("User input:", num_list)
     average = calc_average(num_list)
     minmax = find_min_max(num_list)
-    print(average)
-    print(minmax)
+    num_list = sort_temperature(num_list)
+    print("User input after sort", num_list)
+    median = calc_median_temperature(num_list)
+    print("Average = ",average)
+    print("Minimum and maximum = ", minmax)
+    print("Median = ", median)
 
 
 def display_main_menu():
     print("Enter some numbers separated by commas (e.g. 5, 67, 32)")
 
+
 def get_user_input1():
     list = input().split(",")
     for i in range(0, len(list)):
-            list[i] = float(list[i])
+        list[i] = float(list[i])
     print(i)
     print(list)
+
+
 def get_user_input():
     user_input = input()
     num_list = list()
     input_list = user_input.split(",")
     for items in input_list:
         num_list.append(float(items))
-    return (num_list)
+    return num_list
 
 
 def calc_average(num_list):
@@ -42,6 +50,23 @@ def find_min_max(num_list):
         max = max if (max > items) else items
     return [min, max]
 
-if __name__=="__main__":
-    main()
 
+def sort_temperature(num_list):
+    num_list.sort()
+    return num_list
+
+
+def calc_median_temperature(num_list):
+    length = len(num_list)
+
+
+    if length % 2 == 0:
+        median1 = num_list[length // 2]
+        median2 = num_list[length // 2 - 1]
+        return (median1 + median2) / 2
+    else:
+        return num_list[length // 2]
+
+
+if __name__ == "__main__":
+    main()
